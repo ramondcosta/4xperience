@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CharacterControlService } from '../services/character-control/character-control.service';
 
 @Component({
   selector: 'app-main-grid',
@@ -13,7 +14,7 @@ export class MainGridComponent {
   characterPosition: any = {x: 0, y:0};
   enemyPosition: any = {x: 0, y:0};
 
-  constructor() {
+  constructor(private service: CharacterControlService) {
 
     let characterPositionMovement = (axis: string, value: number) => {
       let newPosition = this.characterPosition;
@@ -56,4 +57,11 @@ export class MainGridComponent {
       }
     }
   }
+
+  // mainIsHere(postion: any): boolean {
+
+  //   let mainPlayer = this.service.players["main"];
+
+  //   // return mainPlayer.postion.x == postion.x;
+  // }
 }

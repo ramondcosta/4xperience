@@ -1,9 +1,16 @@
 :host {
     background-color: green;
+    // background-image: url("/src/assets/orcishWarlord.png");
     height: 58px;
     width: 58px;
     margin: 1px;
     border-color: aqua;
     border-width: 1px;
     // position: relative;
+}
+
+.character {
+    background-image: url("/assets/img/orcishWarlord.png");
+    height: 100%;
+    width: 100%;
 }

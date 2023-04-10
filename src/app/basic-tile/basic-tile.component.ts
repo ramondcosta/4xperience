@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-basic-tile',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./basic-tile.component.scss']
 })
 export class BasicTileComponent {
-
+  @Input() isHere = true;
 }
