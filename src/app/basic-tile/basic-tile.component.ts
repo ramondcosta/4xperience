@@ -11,7 +11,7 @@ export class BasicTileComponent {
   @Input() position: any | null = null;
   
   getCharacterClass() {
-    return `character ${this.character?.class}`;
+    return `character ${this.character?.class} ${this.character?.faction === "enemy" ? "invert" : ""}`;
   }
   
 }

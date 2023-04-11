@@ -10,14 +10,15 @@ export class CharacterControlService {
   width = 10;
   height = 10;
   players: {[id:string]: Character} = {};
+  currentChar: Character;
 
   constructor(private characterService: CharacterService) {
     
     this.players = characterService.players;
 
-    let mainCharacter = this.players["main"]
+    this.currentChar = this.players["main"]
 
-    console.log("mainCharacter", mainCharacter)
+    console.log("currentChar", this.currentChar)
 
     let characterPositionMovement = (axis: string, value: number, characterPosition: {[id: string]: number}) => {
       let newPosition = characterPosition;
@@ -46,21 +47,21 @@ export class CharacterControlService {
       console.log(`Key: ${key}`)
       console.log(`Key: ${code}`)
       console.log(`CharacterPostion:`)
-      console.log(this.players["main"].postion)
+      console.log(this.currentChar.postion)
 
       if(!movementMap[key]) return;
   
-      mainCharacter.postion = characterPositionMovement(movementMap[key].axis, movementMap[key].value, 
-        this.players["main"].postion ? this.players["main"].postion : {}); 
+      this.currentChar.postion = characterPositionMovement(movementMap[key].axis, movementMap[key].value, 
+      this.currentChar.postion ? this.currentChar.postion : {});
+
+      this.currentChar.movementLeft -= 1;
+      if (this.currentChar.movementLeft == 0) this.currentChar = this.players["enemy"];
       // characterPositionMovement(movementMap[key] ? movementMap[key] : {axis:'x', value: 0});
       
       // document.removeEventListener('keydown', updatePositionCallback)
     }
 
     document.addEventListener('keydown', updatePositionCallback)
-
-    
-    this.players["main"] = mainCharacter;
 
   }
 
