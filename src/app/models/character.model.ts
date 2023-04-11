@@ -1,5 +1,7 @@
+import { Coordinates } from "./position.model";
+
 export class Character {
-    postion: { [id: string]: number; } | undefined;
+    postion: Coordinates = {x:0, y:0};
     id: string = "";
     name: string = "";
     class: string = "";

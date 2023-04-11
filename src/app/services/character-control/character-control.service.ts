@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Character } from 'src/app/models/character.model';
+import { Axis, Coordinates } from 'src/app/models/position.model';
 import { CharacterService } from '../character/character.service';
 
 @Injectable({
@@ -25,7 +26,7 @@ export class CharacterControlService {
 
     console.log("playersOrder", this.playersOrder)
 
-    let characterPositionMovement = (axis: string, value: number, characterPosition: {[id: string]: number}) => {
+    let characterPositionMovement = (axis: Axis, value: number, characterPosition: Coordinates ) => {
       let newPosition = characterPosition;
       newPosition[axis] += value;
       if(characterPosition == newPosition)
@@ -57,7 +58,7 @@ export class CharacterControlService {
       if(!movementMap[key]) return;
   
       this.currentChar.postion = characterPositionMovement(movementMap[key].axis, movementMap[key].value, 
-      this.currentChar.postion ? this.currentChar.postion : {});
+        this.currentChar.postion);
 
       this.currentChar.movementLeft -= 1;
       if (this.currentChar.movementLeft == 0) this.setNextPlayer();
@@ -68,7 +69,7 @@ export class CharacterControlService {
 
   }
 
-  samePostion(character: Character, position: any): boolean {
+  samePostion(character: Character, position: Coordinates): boolean {
     return character.postion?.['x'] == position.x &&  
             character.postion?.['y'] == position.y;
   }
@@ -82,5 +83,9 @@ export class CharacterControlService {
     this.currentChar = this.players[playerId];
     console.log("newChar", this.currentChar);
 
+  }
+
+  checkCollision(newPosition: Coordinates, charId: string) {
+    
   }
 }
