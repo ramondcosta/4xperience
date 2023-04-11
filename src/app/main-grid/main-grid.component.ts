@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Character } from '../models/character.model';
 import { CharacterControlService } from '../services/character-control/character-control.service';
 
 @Component({
@@ -16,52 +17,17 @@ export class MainGridComponent {
 
   constructor(private service: CharacterControlService) {
 
-    let characterPositionMovement = (axis: string, value: number) => {
-      let newPosition = this.characterPosition;
-      newPosition[axis] += value;
-      if(this.characterPosition == newPosition)
-      if(newPosition[axis] < 0) newPosition[axis] = 0;
-      if(newPosition[axis] >= (this.height - 1)) newPosition[axis] = this.height-1;
-  
-      if(newPosition.y == this.enemyPosition.y && newPosition.x == this.enemyPosition.x) newPosition[axis] -= value;
-  
-      return newPosition;
-    }
-  
-
-    const updatePositionCallback = (event: any) => {
-      let key = event.key;
-      let code = event.code;
-
-      let movementMap = {
-        "ArrowUp": {axis: 'y', value: -1},
-        "ArrowDown": {axis: 'y', value: 1},
-        "ArrowRight": {axis: 'x', value: 1},
-        "ArrowLeft": {axis: 'x', value: -1}
-      }
-  
-      // characterPositionMovement(movementMap[key] ? movementMap[key] : {axis:'x', value: 0});
-      
-      console.log(`Key: ${key}`)
-      console.log(`Key: ${code}`)
-      console.log(`CharacterPostion:`)
-      console.log(this.characterPosition)
-      document.removeEventListener('keydown', updatePositionCallback)
-    }
-
-    document.addEventListener('keydown', updatePositionCallback)
-
-    for (let i = 0; i < this.width; i++) {
-      for (let j = 0; j < this.height; j++) {
-        this.tiles.push({x:i, y:j})
+    for (let i = 0; i < this.height; i++) {
+      for (let j = 0; j < this.width; j++) {
+        this.tiles.push({x:j, y:i})
       }
     }
+    console.log(this.tiles);
   }
 
-  // mainIsHere(postion: any): boolean {
+  getCharacter(postion: any): Character | null{
 
-  //   let mainPlayer = this.service.players["main"];
-
-  //   // return mainPlayer.postion.x == postion.x;
-  // }
+    let mainPlayer = this.service.players["main"];
+    return this.service.samePostion(mainPlayer, postion)? mainPlayer : null;
+  }
 }

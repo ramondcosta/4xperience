@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Character } from '../models/character.model';
 
 @Component({
   selector: 'app-basic-tile',
@@ -6,5 +7,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./basic-tile.component.scss']
 })
 export class BasicTileComponent {
-  @Input() isHere = true;
+  @Input() character: Character | null = null;
+  @Input() position: any | null = null;
 }
