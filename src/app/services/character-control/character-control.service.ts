@@ -16,6 +16,7 @@ export class CharacterControlService {
     
     mainCharacter.id = "main";
     mainCharacter.name = "commander";
+    mainCharacter.class = "saurianAmbusher";
     mainCharacter.postion = {x:1, y:2};
 
     let characterPositionMovement = (axis: string, value: number, characterPosition: {[id: string]: number}) => {

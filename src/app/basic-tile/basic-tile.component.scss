@@ -10,7 +10,21 @@
 }
 
 .character {
-    background-image: url("/assets/img/orcishWarlord.png");
+    // background-image: url("/assets/img/orcishWarlord.png");
     height: 100%;
     width: 100%;
+    background-size: cover;
+    // transform:scaleX(-1);
+}
+
+.orcishWarlord {
+    background-image: url("/assets/img/orcishWarlord.png");
+}
+
+.saurianAmbusher {
+    background-image: url("/assets/img/saurianAmbusher.png");
+}
+
+.invert {
+    transform:scaleX(-1);
 }

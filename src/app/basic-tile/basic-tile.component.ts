@@ -9,4 +9,9 @@ import { Character } from '../models/character.model';
 export class BasicTileComponent {
   @Input() character: Character | null = null;
   @Input() position: any | null = null;
+  
+  getCharacterClass() {
+    return `character ${this.character?.class}`;
+  }
+  
 }
