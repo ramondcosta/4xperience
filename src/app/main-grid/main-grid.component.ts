@@ -22,7 +22,6 @@ export class MainGridComponent {
         this.tiles.push({x:j, y:i})
       }
     }
-    console.log(this.tiles);
   }
 
   getCharacter(postion: any): Character | null{

@@ -10,15 +10,20 @@ export class CharacterControlService {
   width = 10;
   height = 10;
   players: {[id:string]: Character} = {};
+  playersOrder: string[] = [];
   currentChar: Character;
+  currentCharIndex: number = 0;
 
   constructor(private characterService: CharacterService) {
     
     this.players = characterService.players;
 
+    this.playersOrder = ["main", "enemy"];
+    // this.playersOrder = Object.keys(this.players).sort();
+
     this.currentChar = this.players["main"]
 
-    console.log("currentChar", this.currentChar)
+    console.log("playersOrder", this.playersOrder)
 
     let characterPositionMovement = (axis: string, value: number, characterPosition: {[id: string]: number}) => {
       let newPosition = characterPosition;
@@ -44,10 +49,10 @@ export class CharacterControlService {
         "ArrowLeft": {axis: 'x', value: -1}
       }
 
-      console.log(`Key: ${key}`)
-      console.log(`Key: ${code}`)
-      console.log(`CharacterPostion:`)
-      console.log(this.currentChar.postion)
+      // console.log(`Key: ${key}`)
+      // console.log(`Key: ${code}`)
+      // console.log(`CharacterPostion:`)
+      console.log(this.currentChar)
 
       if(!movementMap[key]) return;
   
@@ -55,10 +60,8 @@ export class CharacterControlService {
       this.currentChar.postion ? this.currentChar.postion : {});
 
       this.currentChar.movementLeft -= 1;
-      if (this.currentChar.movementLeft == 0) this.currentChar = this.players["enemy"];
-      // characterPositionMovement(movementMap[key] ? movementMap[key] : {axis:'x', value: 0});
-      
-      // document.removeEventListener('keydown', updatePositionCallback)
+      if (this.currentChar.movementLeft == 0) this.setNextPlayer();
+
     }
 
     document.addEventListener('keydown', updatePositionCallback)
@@ -68,5 +71,16 @@ export class CharacterControlService {
   samePostion(character: Character, position: any): boolean {
     return character.postion?.['x'] == position.x &&  
             character.postion?.['y'] == position.y;
+  }
+
+  setNextPlayer() {
+    this.currentChar.movementLeft = this.currentChar.maxMovement;
+    this.currentCharIndex = this.currentCharIndex == (this.playersOrder.length - 1) ? 0 :  this.currentCharIndex + 1
+    let playerId = this.playersOrder[this.currentCharIndex];
+    console.log("PLAYERID", playerId);
+    console.log("PLAYERS", this.players);
+    this.currentChar = this.players[playerId];
+    console.log("newChar", this.currentChar);
+
   }
 }
