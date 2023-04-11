@@ -11,7 +11,13 @@ export class BasicTileComponent {
   @Input() position: any | null = null;
   
   getCharacterClass() {
-    return `character ${this.character?.class} ${this.character?.faction === "enemy" ? "invert" : ""}`;
+
+    let className = `character ${this.character?.class} ${this.character?.faction === "enemy" ? "invert" : ""}`;
+    return className;
+  }
+
+  getTileClass() {
+    return this.character?.isSelected ? `tile selected` : `tile`
   }
   
 }

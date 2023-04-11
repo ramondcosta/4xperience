@@ -23,6 +23,7 @@ export class CharacterControlService {
     // this.playersOrder = Object.keys(this.players).sort();
 
     this.currentChar = this.players["main"]
+    this.currentChar.isSelected = true;
 
     console.log("playersOrder", this.playersOrder)
 
@@ -84,11 +85,10 @@ export class CharacterControlService {
     this.currentChar.movementLeft = this.currentChar.maxMovement;
     this.currentCharIndex = this.currentCharIndex == (this.playersOrder.length - 1) ? 0 :  this.currentCharIndex + 1
     let playerId = this.playersOrder[this.currentCharIndex];
-    console.log("PLAYERID", playerId);
-    console.log("PLAYERS", this.players);
-    this.currentChar = this.players[playerId];
-    console.log("newChar", this.currentChar);
 
+    this.currentChar.isSelected = false;
+    this.currentChar = this.players[playerId];
+    this.currentChar.isSelected = true;
   }
 
   checkCollision(newPosition: Coordinates, charId: string) {

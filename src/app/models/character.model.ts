@@ -6,6 +6,7 @@ export class Character {
     name: string = "";
     class: string = "";
     faction: string = "";
+    isSelected: boolean = false;
 
     maxMovement: number = 3;
     movementLeft: number = 3;

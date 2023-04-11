@@ -1,1 +1,3 @@
-<div *ngIf="character" [className]="getCharacterClass()" >{{this.position | json}}</div>
+<div [className]="getTileClass()">
+    <div *ngIf="character" [className]="getCharacterClass()" >{{this.position | json}}</div>
+</div>

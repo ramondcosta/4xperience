@@ -1,4 +1,4 @@
-:host {
+.tile {
     background-color: green;
     // background-image: url("/src/assets/orcishWarlord.png");
     height: 58px;
@@ -7,6 +7,10 @@
     border-color: aqua;
     border-width: 1px;
     // position: relative;
+}
+
+.selected{
+    background-color: aqua;
 }
 
 .character {
