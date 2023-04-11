@@ -27,7 +27,7 @@ export class CharacterControlService {
     console.log("playersOrder", this.playersOrder)
 
     let characterPositionMovement = (axis: Axis, value: number, characterPosition: Coordinates ) => {
-      let newPosition = characterPosition;
+      let newPosition = JSON.parse(JSON.stringify(characterPosition));
       newPosition[axis] += value;
       if(characterPosition == newPosition)
       if(newPosition[axis] < 0) newPosition[axis] = 0;
@@ -56,9 +56,15 @@ export class CharacterControlService {
       console.log(this.currentChar)
 
       if(!movementMap[key]) return;
+
+      
   
-      this.currentChar.postion = characterPositionMovement(movementMap[key].axis, movementMap[key].value, 
+      let newPosition = characterPositionMovement(movementMap[key].axis, movementMap[key].value, 
         this.currentChar.postion);
+
+      if(this.checkCollision(newPosition, this.currentChar.id)) return;
+
+      this.currentChar.postion = newPosition;
 
       this.currentChar.movementLeft -= 1;
       if (this.currentChar.movementLeft == 0) this.setNextPlayer();
@@ -86,6 +92,10 @@ export class CharacterControlService {
   }
 
   checkCollision(newPosition: Coordinates, charId: string) {
-    
+    let index = this.characterService
+      .characters.findIndex(character => character.id != charId && this.samePostion(character, newPosition));
+    return index != -1;
   }
+
+
 }

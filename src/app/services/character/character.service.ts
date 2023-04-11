@@ -32,4 +32,8 @@ export class CharacterService {
     enemy.postion = {x:8, y:2};
     return enemy;
    }
+
+   get characters() {
+    return Object.keys(this.players).map(key => this.players[key])
+   }
 }
