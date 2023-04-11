@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Character } from 'src/app/models/character.model';
+import { CharacterService } from '../character/character.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +11,13 @@ export class CharacterControlService {
   height = 10;
   players: {[id:string]: Character} = {};
 
-  constructor() {
+  constructor(private characterService: CharacterService) {
     
-    let mainCharacter = new Character();
-    
-    mainCharacter.id = "main";
-    mainCharacter.name = "commander";
-    mainCharacter.class = "saurianAmbusher";
-    mainCharacter.postion = {x:1, y:2};
+    this.players = characterService.players;
+
+    let mainCharacter = this.players["main"]
+
+    console.log("mainCharacter", mainCharacter)
 
     let characterPositionMovement = (axis: string, value: number, characterPosition: {[id: string]: number}) => {
       let newPosition = characterPosition;
@@ -65,11 +65,6 @@ export class CharacterControlService {
   }
 
   samePostion(character: Character, position: any): boolean {
-    // console.log("Char", character);
-    // console.log("X", character.postion?.['x']);
-    // console.log("X", character.postion?.['y']);
-    // console.log("Char", character);
-    // console.log("Position", position);
     return character.postion?.['x'] == position.x &&  
             character.postion?.['y'] == position.y;
   }

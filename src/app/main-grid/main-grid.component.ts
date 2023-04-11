@@ -27,7 +27,17 @@ export class MainGridComponent {
 
   getCharacter(postion: any): Character | null{
 
-    let mainPlayer = this.service.players["main"];
-    return this.service.samePostion(mainPlayer, postion)? mainPlayer : null;
+
+    let charInPosition: Character | null = null;
+
+
+    Object.keys(this.service.players).forEach((key: string) => {
+      let player = this.service.players[key];
+      if(this.service.samePostion(player, postion)) {
+        charInPosition = player;
+      }
+    })
+
+    return charInPosition;
   }
 }
