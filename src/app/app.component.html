@@ -1,6 +1,15 @@
 
 <div class="center-screen ">
-  <app-main-grid></app-main-grid>
+  <div class="element" (contextmenu)="displayContextMenu($event); false">
+    <span>Right click on me!</span>
+    <app-context-menu
+      *ngIf="rightClickMenuItems.length > 0 && isDisplayContextMenu"
+      [ngStyle]="getRightClickMenuStyle()"
+      [contextMenuItems]="rightClickMenuItems"
+      (onContextMenuItemClick)="handleMenuItemClick($event)"
+    ></app-context-menu>
+    <app-main-grid></app-main-grid>
+  </div>
 </div>
 
 <router-outlet></router-outlet>

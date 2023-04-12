@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BasicTileComponent } from './basic-tile/basic-tile.component';
 import { MainGridComponent } from './main-grid/main-grid.component';
+import { ContextMenuComponent } from './context-menu/context-menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BasicTileComponent,
-    MainGridComponent
+    MainGridComponent,
+    ContextMenuComponent
   ],
   imports: [
     BrowserModule,

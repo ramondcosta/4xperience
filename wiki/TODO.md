@@ -1,3 +1,4 @@
+- actions menu
 - collision
     - detected and avoided [x]
 - make position a class?
