@@ -1,0 +1,22 @@
+.action-button {
+    text-align: center;
+    border-radius: 7%;
+    border: solid;
+    border-width: 1px;
+    border-color: red;
+    height: 45px;
+    width: 90px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.action-button:hover {
+background-color: aqua;
+}
+
+.action-menu {
+    flex-direction: row;
+    flex-wrap: wrap;
+    display: flex;
+    width: 100%;
+}

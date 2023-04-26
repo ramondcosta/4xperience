@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { BasicTileComponent } from './basic-tile/basic-tile.component';
 import { MainGridComponent } from './main-grid/main-grid.component';
 import { ContextMenuComponent } from './context-menu/context-menu.component';
+import { ActionMenuComponent } from './action-menu/action-menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BasicTileComponent,
     MainGridComponent,
-    ContextMenuComponent
+    ContextMenuComponent,
+    ActionMenuComponent
   ],
   imports: [
     BrowserModule,
