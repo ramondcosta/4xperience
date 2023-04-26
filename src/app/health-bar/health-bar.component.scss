@@ -1,16 +1,15 @@
-:host {
+.health-bar {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-}
-.health-bar {
-    background-color: green;
-    width: 90%;
-    height: 10px;
+    width: 98%;
     margin-left: 1px;
+}
+.current-health-bar {
+    background-color: green;
+    height: 10px;
 }
 .lost-health-bar {
     background-color: red;
-    width: 8%;
     height: 10px;
 }
