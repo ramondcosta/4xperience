@@ -1,10 +1,13 @@
-<div [className]="getTileClass()" >
-<!-- (contextmenu)="displayContextMenu($event); false" -->
+<div [className]="getTileClass()">
+    <!-- (contextmenu)="displayContextMenu($event); false" -->
     <!-- <app-context-menu
     *ngIf="contextMenuItems.length > 0 && isDisplayContextMenu"
     [ngStyle]="getRightClickMenuStyle()"
     [contextMenuItems]="contextMenuItems"
     (onContextMenuItemClick)="handleMenuItemClick($event)"
   ></app-context-menu> -->
-    <div *ngIf="character" [className]="getCharacterClass()" ></div>
-</div>  
+  <div *ngIf="character" class="character-tile">
+    <app-health-bar></app-health-bar>
+    <div [className]="getCharacterClass()"></div>
+  </div>
+</div>

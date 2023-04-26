@@ -1,5 +1,5 @@
 .tile {
-    background-color: green;
+    background-color: rgb(165,42,42);
     // background-image: url("/src/assets/orcishWarlord.png");
     height: 58px;
     width: 58px;
@@ -13,8 +13,11 @@
     background-color: aqua;
 }
 
+.character-tile {
+    height: 100%;
+    width: 100%;
+}
 .character {
-    // background-image: url("/assets/img/orcishWarlord.png");
     height: 100%;
     width: 100%;
     background-size: cover;

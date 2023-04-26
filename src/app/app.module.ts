@@ -7,6 +7,7 @@ import { BasicTileComponent } from './basic-tile/basic-tile.component';
 import { MainGridComponent } from './main-grid/main-grid.component';
 import { ContextMenuComponent } from './context-menu/context-menu.component';
 import { ActionMenuComponent } from './action-menu/action-menu.component';
+import { HealthBarComponent } from './health-bar/health-bar.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ActionMenuComponent } from './action-menu/action-menu.component';
     BasicTileComponent,
     MainGridComponent,
     ContextMenuComponent,
-    ActionMenuComponent
+    ActionMenuComponent,
+    HealthBarComponent
   ],
   imports: [
     BrowserModule,
