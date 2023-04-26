@@ -97,4 +97,8 @@ export class CharacterControlService {
     return index != -1;
   }
 
+  attack(damage: number, characterId: string) {
+    this.characterService.attackCharacter(10, "enemy");
+  }
+
 }

@@ -37,7 +37,7 @@ export class CharacterService {
     return Object.keys(this.allCharacters).map(key => this.allCharacters[key])
    }
 
-   attackCharacter(damage: number, character: Character): void {
-      
+   attackCharacter(damage: number, characterId: string): void {
+      this.allCharacters[characterId].currentHealth -= 10;
    }
 }
