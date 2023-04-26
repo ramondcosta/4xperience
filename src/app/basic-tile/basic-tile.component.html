@@ -7,7 +7,7 @@
     (onContextMenuItemClick)="handleMenuItemClick($event)"
   ></app-context-menu> -->
   <div *ngIf="character" class="character-tile">
-    <app-health-bar></app-health-bar>
+    <app-health-bar [currentHealth]="character.currentHealth"></app-health-bar>
     <div [className]="getCharacterClass()"></div>
   </div>
 </div>

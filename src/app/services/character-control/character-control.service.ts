@@ -17,7 +17,7 @@ export class CharacterControlService {
 
   constructor(private characterService: CharacterService) {
     
-    this.players = characterService.players;
+    this.players = characterService.allCharacters;
 
     this.playersOrder = ["main", "enemy"];
     // this.playersOrder = Object.keys(this.players).sort();
@@ -96,6 +96,5 @@ export class CharacterControlService {
       .characters.findIndex(character => character.id != charId && this.samePostion(character, newPosition));
     return index != -1;
   }
-
 
 }

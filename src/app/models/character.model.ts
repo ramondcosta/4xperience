@@ -8,6 +8,8 @@ export class Character {
     faction: string = "";
     isSelected: boolean = false;
 
+    currentHealth: number = 100;
+
     maxMovement: number = 3;
     movementLeft: number = 3;
 }

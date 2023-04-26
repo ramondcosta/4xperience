@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-health-bar',
@@ -6,7 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./health-bar.component.scss']
 })
 export class HealthBarComponent {
-  currentHealth = 75;
+  @Input()
+  currentHealth: number = 50;
 
   get healthSize() {
     return this.currentHealth.toString() + "%";

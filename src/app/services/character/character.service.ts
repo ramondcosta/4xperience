@@ -6,7 +6,7 @@ import { CharClasses } from 'src/app/const/char-classes.enum';
   providedIn: 'root'
 })
 export class CharacterService {
-  players: {[id:string]: Character} = {};
+  allCharacters: {[id:string]: Character} = {};
 
   constructor() {
 
@@ -17,8 +17,8 @@ export class CharacterService {
     mainCharacter.class = CharClasses.OrcishWarlord;
     mainCharacter.postion = {x:1, y:2};
 
-    this.players["main"] = mainCharacter;
-    this.players["enemy"] = this.createBaseEnemy();
+    this.allCharacters["main"] = mainCharacter;
+    this.allCharacters["enemy"] = this.createBaseEnemy();
 
    }
 
@@ -34,6 +34,10 @@ export class CharacterService {
    }
 
    get characters() {
-    return Object.keys(this.players).map(key => this.players[key])
+    return Object.keys(this.allCharacters).map(key => this.allCharacters[key])
+   }
+
+   attackCharacter(damage: number, character: Character): void {
+      
    }
 }
