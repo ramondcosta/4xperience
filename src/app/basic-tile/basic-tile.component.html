@@ -1,3 +1,10 @@
-<div [className]="getTileClass()">
-    <div *ngIf="character" [className]="getCharacterClass()" >{{this.position | json}}</div>
-</div>
+<div [className]="getTileClass()" >
+<!-- (contextmenu)="displayContextMenu($event); false" -->
+    <!-- <app-context-menu
+    *ngIf="contextMenuItems.length > 0 && isDisplayContextMenu"
+    [ngStyle]="getRightClickMenuStyle()"
+    [contextMenuItems]="contextMenuItems"
+    (onContextMenuItemClick)="handleMenuItemClick($event)"
+  ></app-context-menu> -->
+    <div *ngIf="character" [className]="getCharacterClass()" ></div>
+</div>  

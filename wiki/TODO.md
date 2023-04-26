@@ -6,3 +6,4 @@
 - combat
     - hp
     - damage
+- fix grid
