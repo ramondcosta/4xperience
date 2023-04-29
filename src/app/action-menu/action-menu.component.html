@@ -5,5 +5,5 @@
     <div class="action-button" (click)="doWait()">
         <p class="action text"> Wait</p>
     </div>
-    <p *ngIf="currentCharacter?.movementLeft == 0">No Movement Left</p>
+    <p class="movement-left-text" *ngIf="currentCharacter?.movementLeft == 0">No Movement Left</p>
 </div>
