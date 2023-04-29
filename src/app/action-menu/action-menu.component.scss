@@ -11,7 +11,10 @@
 }
 
 .action-button:hover {
-background-color: aqua;
+    background-color: aqua;
+}
+.action-button:active {
+    background-color: blue;
 }
 
 .action-menu {

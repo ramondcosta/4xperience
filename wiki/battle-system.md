@@ -1,0 +1,3 @@
+- movement
+    - once movement is finished show it to the player
+        - then give it the option to end turn

@@ -2,7 +2,8 @@
     <div class="action-button" (click)="doAttack()">
         <p class="action text"> Attack</p>
     </div>
-    <div class="action-button">
+    <div class="action-button" (click)="doWait()">
         <p class="action text"> Wait</p>
     </div>
+    <p *ngIf="currentCharacter?.movementLeft == 0">No Movement Left</p>
 </div>

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 import { Character } from 'src/app/models/character.model';
 import { Axis, Coordinates } from 'src/app/models/position.model';
 import { CharacterService } from '../character/character.service';
@@ -13,6 +14,8 @@ export class CharacterControlService {
   players: {[id:string]: Character} = {};
   playersOrder: string[] = [];
   currentChar: Character;
+
+  currentCharacterSubject: Subject<Character> = new Subject();
   currentCharIndex: number = 0;
 
   constructor(private characterService: CharacterService) {
@@ -24,6 +27,9 @@ export class CharacterControlService {
 
     this.currentChar = this.players["main"]
     this.currentChar.isSelected = true;
+
+    setTimeout(() => this.currentCharacterSubject.next(this.currentChar), 10)
+    
 
     console.log("playersOrder", this.playersOrder)
 
@@ -41,6 +47,9 @@ export class CharacterControlService {
   
 
     const updatePositionCallback = (event: any) => {
+
+      if (this.currentChar.movementLeft == 0) return;
+
       let key = event.key;
       let code = event.code;
 
@@ -68,7 +77,7 @@ export class CharacterControlService {
       this.currentChar.postion = newPosition;
 
       this.currentChar.movementLeft -= 1;
-      if (this.currentChar.movementLeft == 0) this.setNextPlayer();
+      // if (this.currentChar.movementLeft == 0) this.setNextPlayer();
 
     }
 
@@ -89,6 +98,12 @@ export class CharacterControlService {
     this.currentChar.isSelected = false;
     this.currentChar = this.players[playerId];
     this.currentChar.isSelected = true;
+
+    this.currentCharacterSubject.next(this.currentChar);
+  }
+
+  getCurrentCharacterSubject(): Subject<Character> {
+    return this.currentCharacterSubject;
   }
 
   checkCollision(newPosition: Coordinates, charId: string) {
