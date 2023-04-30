@@ -47,10 +47,11 @@ export class CharacterService {
    enemiesInRange(characterId: string): Character[] {
 
     let currentCharacter = this.allCharacters[characterId];
-    let adjacentTiles = this.closeTiles(currentCharacter.postion); 
+    let adjacentTiles = this.closeTiles(currentCharacter.postion);
+    console.log("ADJACENCIES!", adjacentTiles)
     return this.characters.filter(character => {
         if(character.id == characterId) return false; 
-        return adjacentTiles.find(position => samePostion(currentCharacter, position));
+        return adjacentTiles.find(position => samePostion(character, position));
       }
     );
    }
@@ -58,14 +59,13 @@ export class CharacterService {
    closeTiles(position: Coordinates): Coordinates[] {
     let x = position.x;
     let y = position.y;
-    let possibleX = [x-1,x, x+1];
-    let possibleY = [y-1,y, y+1];
+    let possibleX = [x-1, x, x+1];
+    let possibleY = [y-1, y, y+1];
 
     let closePositions: Coordinates[] = [];
 
     possibleY.forEach(y => {
       possibleX.forEach(x => {
-        // if(x != position.x && y != position.y) 
           closePositions.push({x,y});
       })
     })

@@ -109,7 +109,7 @@ export class CharacterControlService {
   }
 
   attack(damage: number, characterId: string) {
-    this.characterService.attackCharacter(10, "enemy");
+    this.characterService.attackCharacter(10, characterId);
   }
 
 }
