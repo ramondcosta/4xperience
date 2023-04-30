@@ -26,6 +26,7 @@ export class ActionMenuComponent {
     let enemies = this.characterService.enemiesInRange(this.currentCharacter!.id); 
     console.log("ENEMIES", enemies);
     this.characterControlService.attack(10, enemies[0].id);
+    this.currentCharacter!.movementLeft = 0;
   }
 
   doWait() {

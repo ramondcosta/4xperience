@@ -19,6 +19,14 @@ export class CharacterControlService {
   currentCharacterSubject: Subject<Character> = new Subject();
   currentCharIndex: number = 0;
 
+  movementMap:any = {
+    "ArrowUp": {axis: 'y', value: -1},
+    "ArrowDown": {axis: 'y', value: 1},
+    "ArrowRight": {axis: 'x', value: 1},
+    "ArrowLeft": {axis: 'x', value: -1}
+  }
+
+
   constructor(private characterService: CharacterService) {
     
     this.players = characterService.allCharacters;
@@ -52,25 +60,10 @@ export class CharacterControlService {
       if (this.currentChar.movementLeft == 0) return;
 
       let key = event.key;
-      let code = event.code;
 
-      let movementMap:any = {
-        "ArrowUp": {axis: 'y', value: -1},
-        "ArrowDown": {axis: 'y', value: 1},
-        "ArrowRight": {axis: 'x', value: 1},
-        "ArrowLeft": {axis: 'x', value: -1}
-      }
-
-      // console.log(`Key: ${key}`)
-      // console.log(`Key: ${code}`)
-      // console.log(`CharacterPostion:`)
-      console.log(this.currentChar)
-
-      if(!movementMap[key]) return;
-
-      
+      if(!this.movementMap[key]) return;
   
-      let newPosition = characterPositionMovement(movementMap[key].axis, movementMap[key].value, 
+      let newPosition = characterPositionMovement(this.movementMap[key].axis, this.movementMap[key].value, 
         this.currentChar.postion);
 
       if(this.checkCollision(newPosition, this.currentChar.id)) return;
@@ -103,6 +96,8 @@ export class CharacterControlService {
   }
 
   checkCollision(newPosition: Coordinates, charId: string) {
+    if(newPosition.x >= this.width || newPosition.y >= this.height 
+      || newPosition.x < 0 || newPosition.y < 0) return true;
     let index = this.characterService
       .characters.findIndex(character => character.id != charId && samePostion(character, newPosition));
     return index != -1;
