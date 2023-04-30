@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Character } from '../models/character.model';
 import { CharacterControlService } from '../services/character-control/character-control.service';
+import { samePostion } from '../utils/positionHelper';
 
 @Component({
   selector: 'app-main-grid',
@@ -32,7 +33,7 @@ export class MainGridComponent {
 
     Object.keys(this.service.players).forEach((key: string) => {
       let player = this.service.players[key];
-      if(this.service.samePostion(player, postion)) {
+      if(samePostion(player, postion)) {
         charInPosition = player;
       }
     })

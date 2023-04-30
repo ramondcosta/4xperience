@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { Character } from 'src/app/models/character.model';
 import { Axis, Coordinates } from 'src/app/models/position.model';
+import { samePostion } from 'src/app/utils/positionHelper';
 import { CharacterService } from '../character/character.service';
 
 @Injectable({
@@ -85,11 +86,6 @@ export class CharacterControlService {
 
   }
 
-  samePostion(character: Character, position: Coordinates): boolean {
-    return character.postion?.['x'] == position.x &&  
-            character.postion?.['y'] == position.y;
-  }
-
   setNextPlayer() {
     this.currentChar.movementLeft = this.currentChar.maxMovement;
     this.currentCharIndex = this.currentCharIndex == (this.playersOrder.length - 1) ? 0 :  this.currentCharIndex + 1
@@ -108,7 +104,7 @@ export class CharacterControlService {
 
   checkCollision(newPosition: Coordinates, charId: string) {
     let index = this.characterService
-      .characters.findIndex(character => character.id != charId && this.samePostion(character, newPosition));
+      .characters.findIndex(character => character.id != charId && samePostion(character, newPosition));
     return index != -1;
   }
 

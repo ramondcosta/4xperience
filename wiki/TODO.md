@@ -1,9 +1,13 @@
 - actions menu
+    - Created[x]
+    - to be improved[]
 - collision
     - detected and avoided [x]
 - make position a class?
     done [x]
 - combat
-    - hp
-    - damage
+    - hp[x]
+    - damage[]
+        - needs to be improved
 - fix grid
+- TDD
