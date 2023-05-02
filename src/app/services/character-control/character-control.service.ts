@@ -12,23 +12,23 @@ export class CharacterControlService {
 
   width = 10;
   height = 10;
-  players: {[id:string]: Character} = {};
+  players: { [id: string]: Character } = {};
   playersOrder: string[] = [];
   currentChar: Character;
 
   currentCharacterSubject: Subject<Character> = new Subject();
   currentCharIndex: number = 0;
 
-  movementMap:any = {
-    "ArrowUp": {axis: 'y', value: -1},
-    "ArrowDown": {axis: 'y', value: 1},
-    "ArrowRight": {axis: 'x', value: 1},
-    "ArrowLeft": {axis: 'x', value: -1}
+  movementMap: any = {
+    "ArrowUp": { axis: 'y', value: -1 },
+    "ArrowDown": { axis: 'y', value: 1 },
+    "ArrowRight": { axis: 'x', value: 1 },
+    "ArrowLeft": { axis: 'x', value: -1 }
   }
 
 
   constructor(private characterService: CharacterService) {
-    
+
     this.players = characterService.allCharacters;
 
     this.playersOrder = ["main", "enemy"];
@@ -38,22 +38,17 @@ export class CharacterControlService {
     this.currentChar.isSelected = true;
 
     setTimeout(() => this.currentCharacterSubject.next(this.currentChar), 10)
-    
+
 
     console.log("playersOrder", this.playersOrder)
 
-    let characterPositionMovement = (axis: Axis, value: number, characterPosition: Coordinates ) => {
+    let characterPositionMovement = (axis: Axis, value: number, characterPosition: Coordinates) => {
       let newPosition = JSON.parse(JSON.stringify(characterPosition));
       newPosition[axis] += value;
-      if(characterPosition == newPosition)
-      if(newPosition[axis] < 0) newPosition[axis] = 0;
-      if(newPosition[axis] >= (this.height - 1)) newPosition[axis] = this.height-1;
-  
-      // if(newPosition.y == this.enemyPosition.y && newPosition.x == this.enemyPosition.x) newPosition[axis] -= value;
-  
+
       return newPosition;
     }
-  
+
 
     const updatePositionCallback = (event: any) => {
 
@@ -61,18 +56,17 @@ export class CharacterControlService {
 
       let key = event.key;
 
-      if(!this.movementMap[key]) return;
-  
-      let newPosition = characterPositionMovement(this.movementMap[key].axis, this.movementMap[key].value, 
+      if (!this.movementMap[key]) return;
+
+      let newPosition = characterPositionMovement(this.movementMap[key].axis, this.movementMap[key].value,
         this.currentChar.postion);
 
-      if(this.checkCollision(newPosition, this.currentChar.id)) return;
+      if (this.checkCollision(newPosition, this.currentChar.id)) {
+        return;
+      };
 
       this.currentChar.postion = newPosition;
-
       this.currentChar.movementLeft -= 1;
-      // if (this.currentChar.movementLeft == 0) this.setNextPlayer();
-
     }
 
     document.addEventListener('keydown', updatePositionCallback)
@@ -81,7 +75,7 @@ export class CharacterControlService {
 
   setNextPlayer() {
     this.currentChar.movementLeft = this.currentChar.maxMovement;
-    this.currentCharIndex = this.currentCharIndex == (this.playersOrder.length - 1) ? 0 :  this.currentCharIndex + 1
+    this.currentCharIndex = this.currentCharIndex == (this.playersOrder.length - 1) ? 0 : this.currentCharIndex + 1
     let playerId = this.playersOrder[this.currentCharIndex];
 
     this.currentChar.isSelected = false;
@@ -96,7 +90,7 @@ export class CharacterControlService {
   }
 
   checkCollision(newPosition: Coordinates, charId: string) {
-    if(newPosition.x >= this.width || newPosition.y >= this.height 
+    if (newPosition.x >= this.width || newPosition.y >= this.height
       || newPosition.x < 0 || newPosition.y < 0) return true;
     let index = this.characterService
       .characters.findIndex(character => character.id != charId && samePostion(character, newPosition));

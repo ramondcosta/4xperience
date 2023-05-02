@@ -9,5 +9,5 @@
     - hp[x]
     - damage[]
         - needs to be improved
-- fix grid
+- fix grid[x]
 - TDD
