@@ -48,7 +48,6 @@ export class CharacterService {
 
     let currentCharacter = this.allCharacters[characterId];
     let adjacentTiles = this.closeTiles(currentCharacter.postion);
-    console.log("ADJACENCIES!", adjacentTiles)
     return this.characters.filter(character => {
         if(character.id == characterId) return false; 
         return adjacentTiles.find(position => samePostion(character, position));

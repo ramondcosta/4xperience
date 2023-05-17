@@ -13,7 +13,8 @@ export class HealthBarComponent {
     return this.currentHealth.toString() + "%";
   }
   get lostHealthSize() {
-    let lostHealth = 100 - this.currentHealth; 
+    let lostHealth = 100 - this.currentHealth;
+    console.log(lostHealth);
     return lostHealth.toString() + "%";
   }
 }

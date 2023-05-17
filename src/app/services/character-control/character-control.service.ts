@@ -39,9 +39,6 @@ export class CharacterControlService {
 
     setTimeout(() => this.currentCharacterSubject.next(this.currentChar), 10)
 
-
-    console.log("playersOrder", this.playersOrder)
-
     let characterPositionMovement = (axis: Axis, value: number, characterPosition: Coordinates) => {
       let newPosition = JSON.parse(JSON.stringify(characterPosition));
       newPosition[axis] += value;
