@@ -1,13 +1,17 @@
-- actions menu
-    - Created[x]
-    - to be improved[]
-- collision
-    - detected and avoided [x]
-- make position a class?
-    done [x]
-- combat
-    - hp[x]
-    - damage[]
-        - needs to be improved
-- fix grid[x]
+## TODO
+
+- Actions menu
+    - [x] Created
+    - [ ] To be improved
+- Collision
+    - [x] Detected and avoided 
+- Make position a class?
+    - [x] done 
+- Combat
+    - [x] HP
+    - [ ] Damage
+        - [x] Basic
+        - [ ] Needs to be improved
+- Grid
+    - [x] Fix grid
 - TDD
